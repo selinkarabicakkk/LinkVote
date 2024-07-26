@@ -37,3 +37,6 @@ body {
   height: 8px;
 }
 
+.point-part {
+  border-radius: 1rem;
+}
