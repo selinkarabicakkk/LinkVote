@@ -31,3 +31,9 @@ body {
     text-wrap: balance;
   }
 }
+
+.header-line {
+  flex: 1;
+  height: 8px;
+}
+
