@@ -30,6 +30,9 @@ const LinkList: React.FC = () => {
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [linkToDelete, setLinkToDelete] = useState<Link | null>(null);
 
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
+
     useEffect(() => {
         localStorage.setItem('links', JSON.stringify(links));
     }, [links]);
@@ -48,6 +51,16 @@ const LinkList: React.FC = () => {
         setLinks(links => links.filter(link => link.id !== id));
         setShowDeletePopup(false);
         setLinkToDelete(null);
+
+        
+        const deletedLink = links.find(link => link.id === id);
+        if (deletedLink) {
+            setSuccessMessage(`${deletedLink.title} removed.`);
+            setShowSuccessMessage(true);
+            setTimeout(() => {
+                setShowSuccessMessage(false);
+            }, 2000); 
+        }
     };
 
     const handleDeleteClick = (link: Link) => {
@@ -60,7 +73,6 @@ const LinkList: React.FC = () => {
         setLinkToDelete(null);
     };
 
-    // Calculate the links to display based on the current page
     const indexOfLastLink = currentPage * linksPerPage;
     const indexOfFirstLink = indexOfLastLink - linksPerPage;
     const currentLinks = links.slice(indexOfFirstLink, indexOfLastLink);
@@ -126,6 +138,12 @@ const LinkList: React.FC = () => {
                             </button>
                         </div>
                     </div>
+                </div>
+            )}
+
+            {showSuccessMessage && (
+                <div className="fixed top-0 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-lg mt-4">
+                    {successMessage}
                 </div>
             )}
         </div>
