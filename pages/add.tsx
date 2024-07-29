@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SubmitLinkForm from '../components/SubmitLinkForm';
 import { Link } from '../types/Link';
 import Header from '../components/Header';
+import ReturnToList from '@/components/ReturnToList';
 
 const Add: React.FC = () => {
     const [links, setLinks] = useState<Link[]>([]);
@@ -24,11 +25,10 @@ const Add: React.FC = () => {
     };
 
     return (
-        <div>
-        <Header />
-        <div className="bg-white flex flex-col items-center pt-8">
+        <div style={{ height: '100vh', width: '100vw' }}>
+            <Header />
             <SubmitLinkForm onAddLink={handleAddLink} />
-        </div>
+            <ReturnToList />
         </div>
     );
 };
