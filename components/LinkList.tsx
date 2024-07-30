@@ -83,12 +83,13 @@ const LinkList: React.FC = () => {
         setCurrentPage(page);
     };
 
+
     return (
-        <div className="bg-white flex flex-col items-center ml-42 pt-4">
+        <div className="bg-white flex flex-col items-center ml-42 pt-4 flex-grow">
             {currentLinks.map(link => (
                 <div 
                     key={link.id} 
-                    className="relative border p-4 w-full max-w-md mb-4 flex items-center justify-between bg-gray-100 group"
+                    className="relative border p-4 w-full max-w-md mb-4 flex items-center justify-between bg-gray-100 rounded-xl shadow-lg group"
                 >
                     <div className="flex items-center">
                         <div className="point-part bg-gray-200 p-2 text-center w-20 h-12 flex items-center justify-center mr-4">
@@ -97,16 +98,16 @@ const LinkList: React.FC = () => {
                         </div>
                         <div>
                             <h2 className="font-bold">{link.title}</h2>
-                            <p className="text-gray-500 text-sm">{link.url}</p>
+                            <p className="text-gray-500 text-sm">({link.url})</p>
                         </div>
                     </div>
                     <div className="flex flex-col items-center">
-                        <button onClick={() => handleVote(link.id, 1)} className="text-sm text-gray-500 mb-2">↑ Up Vote</button>
-                        <button onClick={() => handleVote(link.id, -1)} className="text-sm text-gray-500">↓ Down Vote</button>
+                        <button onClick={() => handleVote(link.id, 1)} className="text-sm text-gray-500 mb-2 font-semibold">↑ Up Vote</button>
+                        <button onClick={() => handleVote(link.id, -1)} className="text-sm text-gray-500 font-semibold">↓ Down Vote</button>
                     </div>
                     <button 
                         onClick={() => handleDeleteClick(link)}
-                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        className="absolute top-0 right-0  bg-red-500 text-white rounded-full px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     >
                         &#10005;
                     </button>

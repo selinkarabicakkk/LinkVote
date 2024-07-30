@@ -26,7 +26,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPage
                 <button
                     key={number}
                     onClick={() => onPageChange(number)}
-                    className={`px-2 py-1 ${number === currentPage ? 'font-bold border border-gray-400' : ''}`}
+                    className={`px-2 py-1 ${number === currentPage ? 'font-bold' : ''}`}
                 >
                     {number}
                 </button>

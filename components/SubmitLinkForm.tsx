@@ -25,33 +25,42 @@ const SubmitLinkForm: React.FC<SubmitLinkFormProps> = ({ onAddLink }) => {
             setSuccessMessage(`${title} added.`);
             setTimeout(() => {
                 setSuccessMessage('');
-            }, 3000); // Show the message for 3 seconds
+            }, 2000); 
         }
     };
 
     return (
-        <div className="bg-white flex flex-col items-center pt-8">
+        <div className="bg-white flex flex-col items-center pt-12">
+            
             {successMessage && (
                 <div className="fixed top-0 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-lg mt-4">
                     {successMessage}
                 </div>
             )}
-            <form onSubmit={handleSubmit} className="bg-gray-100 p-4 flex flex-col items-center w-full max-w-md">
+            <h2 className="text-2xl font-bold mb-8 pr-64">Add New Link</h2>
+            <form onSubmit={handleSubmit} className="bg-gray-100 p-4 flex flex-col items-center w-full max-w-md rounded-xl shadow-lg">
+            <div className='mt-4'>
+            <label className="w-full text-left">Link Name:</label>
                 <input
                     type="text"
-                    placeholder="Link Title"
+                    placeholder="e.g. Alphabet"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                    className="border p-2 mb-2 w-full"
+                    className="border p-2 mb-2 w-full rounded-xl mt-4"
                 />
+                </div>
+
+                <div className='mt-4'>
+                <label className="w-full text-left">Link URL:</label>
                 <input
                     type="text"
-                    placeholder="Link URL"
+                    placeholder="e.g. http://abc.xyz"
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
-                    className="border p-2 mb-2 w-full"
+                    className="border p-2 mb-2 w-full rounded-xl mt-4"
                 />
-                <button type="submit" className="bg-blue-500 text-white p-2 w-full">SUBMIT A LINK</button>
+                </div>
+                <button type="submit" className="bg-black text-white mt-7 pb-4 py-3 w-2/5 font-bold rounded-3xl">ADD</button>
             </form>
         </div>
     );
