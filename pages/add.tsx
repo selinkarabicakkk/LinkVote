@@ -3,6 +3,7 @@ import SubmitLinkForm from '../components/SubmitLinkForm';
 import { Link } from '../types/Link';
 import Header from '../components/Header';
 import ReturnToList from '@/components/ReturnToList';
+import '../app/globals.css';
 
 const Add: React.FC = () => {
     const [links, setLinks] = useState<Link[]>([]);
@@ -25,10 +26,12 @@ const Add: React.FC = () => {
     };
 
     return (
-        <div style={{ height: '100vh', width: '100vw' }}>
+        <div style={{ height: '100vh', width: '100vw' }} className='bg-white'>
             <Header />
-            <SubmitLinkForm onAddLink={handleAddLink} />
+            <div className='flex flex-col justify-center'>
             <ReturnToList />
+            <SubmitLinkForm onAddLink={handleAddLink} />
+            </div>
         </div>
     );
 };
