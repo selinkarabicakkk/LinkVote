@@ -8,6 +8,7 @@ interface SubmitLinkFormProps {
 const SubmitLinkForm: React.FC<SubmitLinkFormProps> = ({ onAddLink }) => {
     const [title, setTitle] = useState('');
     const [url, setUrl] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -21,11 +22,20 @@ const SubmitLinkForm: React.FC<SubmitLinkFormProps> = ({ onAddLink }) => {
             onAddLink(newLink);
             setTitle('');
             setUrl('');
+            setSuccessMessage(`${title} added.`);
+            setTimeout(() => {
+                setSuccessMessage('');
+            }, 3000); // Show the message for 3 seconds
         }
     };
 
     return (
         <div className="bg-white flex flex-col items-center pt-8">
+            {successMessage && (
+                <div className="fixed top-0 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-lg mt-4">
+                    {successMessage}
+                </div>
+            )}
             <form onSubmit={handleSubmit} className="bg-gray-100 p-4 flex flex-col items-center w-full max-w-md">
                 <input
                     type="text"
