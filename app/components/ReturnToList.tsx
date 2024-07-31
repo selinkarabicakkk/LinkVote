@@ -1,8 +1,11 @@
 import React from 'react';
-import { useRouter } from 'next/router';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+
 
 
 const ReturnToList: React.FC = () => {
+
+    
     const router = useRouter();
 
     const handleReturn = () => {
