@@ -1,5 +1,6 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
-import SubmitLinkForm from './SubmitLinkForm';
 import Pagination from './Pagination';
 
 interface Link {

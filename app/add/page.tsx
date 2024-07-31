@@ -1,11 +1,12 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import SubmitLinkForm from '../components/SubmitLinkForm';
-import { Link } from '../types/Link';
-import Header from '../components/Header';
-import ReturnToList from '@/components/ReturnToList';
-import '../app/globals.css';
+import { Link } from '../../types/Link';
+import ReturnToList from '../components/ReturnToList';
+import '../globals.css';
 
-const Add: React.FC = () => {
+const page: React.FC = () => {
     const [links, setLinks] = useState<Link[]>([]);
 
     useEffect(() => {
@@ -26,8 +27,7 @@ const Add: React.FC = () => {
     };
 
     return (
-        <div style={{ height: '100vh', width: '100vw' }} className='bg-white'>
-            <Header />
+        <div style={{ height: '100vh' }} className='bg-white'>
             <div className='flex flex-col justify-center'>
             <ReturnToList />
             <SubmitLinkForm onAddLink={handleAddLink} />
@@ -36,4 +36,4 @@ const Add: React.FC = () => {
     );
 };
 
-export default Add;
+export default page;

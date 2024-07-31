@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from '../types/Link';
+import { Link } from '../../types/Link';
 
 interface SubmitLinkFormProps {
     onAddLink: (link: Link) => void;
