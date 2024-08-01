@@ -34,6 +34,8 @@ const LinkList: React.FC = () => {
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [successMessage, setSuccessMessage] = useState('');
 
+    const [sortOrder, setSortOrder] = useState<'most' | 'least'>('most');
+
     useEffect(() => {
         localStorage.setItem('links', JSON.stringify(links));
     }, [links]);
@@ -41,7 +43,7 @@ const LinkList: React.FC = () => {
     const handleVote = (id: number, delta: number) => {
         setLinks(links => links.map(link =>
             link.id === id ? { ...link, points: link.points + delta } : link
-        ).sort((a, b) => b.points - a.points || b.id - a.id));
+        ));
     };
 
     const handleAddLink = (newLink: Link) => {
@@ -53,14 +55,13 @@ const LinkList: React.FC = () => {
         setShowDeletePopup(false);
         setLinkToDelete(null);
 
-        
         const deletedLink = links.find(link => link.id === id);
         if (deletedLink) {
             setSuccessMessage(`${deletedLink.title} removed.`);
             setShowSuccessMessage(true);
             setTimeout(() => {
                 setShowSuccessMessage(false);
-            }, 2000); 
+            }, 2000);
         }
     };
 
@@ -74,9 +75,22 @@ const LinkList: React.FC = () => {
         setLinkToDelete(null);
     };
 
+    const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSortOrder(event.target.value as 'most' | 'least');
+    };
+
     const indexOfLastLink = currentPage * linksPerPage;
     const indexOfFirstLink = indexOfLastLink - linksPerPage;
-    const currentLinks = links.slice(indexOfFirstLink, indexOfLastLink);
+
+    const sortedLinks = [...links].sort((a, b) => {
+        if (sortOrder === 'most') {
+            return b.points - a.points || b.id - a.id;
+        } else {
+            return a.points - b.points || a.id - b.id;
+        }
+    });
+
+    const currentLinks = sortedLinks.slice(indexOfFirstLink, indexOfLastLink);
 
     const totalPages = Math.ceil(links.length / linksPerPage);
 
@@ -84,9 +98,14 @@ const LinkList: React.FC = () => {
         setCurrentPage(page);
     };
 
-
     return (
         <div className="bg-white flex flex-col items-center ml-42 pt-4 flex-grow">
+            <div className="mb-4 pr-32 mr-32">
+                <select id="sortOrder" value={sortOrder} onChange={handleSortChange} className="border p-2 rounded">
+                    <option value="most">Most Voted (Z → A)</option>
+                    <option value="least">Less Voted (A → Z)</option>
+                </select>
+            </div>
             {currentLinks.map(link => (
                 <div 
                     key={link.id} 
