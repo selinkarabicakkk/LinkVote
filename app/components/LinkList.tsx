@@ -26,7 +26,7 @@ const LinkList: React.FC = () => {
     });
 
     const [currentPage, setCurrentPage] = useState(1);
-    const linksPerPage = 5;
+    const linksPerPage = 4;
 
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [linkToDelete, setLinkToDelete] = useState<Link | null>(null);

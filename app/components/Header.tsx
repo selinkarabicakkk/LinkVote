@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react';  
 import Image from 'next/image';
 
 const Header: React.FC = () => {
     return (
-        <header className="bg-white flex flex-col pt-8">
+        <header className="bg-white flex flex-col pt-5">
             <div className="flex justify-between">
-                <div className="flex items-center mb-5 ml-8 w-1/5">
+                <div className="flex items-center mb-3 ml-8 w-1/5">
                     <Image
                         src="/hepsiburada_logo1.png"
                         alt="Hepsiburada Logo"
@@ -13,7 +13,7 @@ const Header: React.FC = () => {
                         height={40}
                     />
                 </div>
-                <div className="flex mr-6 mb-8 font">
+                <div className="flex mr-6 mb-6 font">
                     <span className="font-bold font-sans text-xl">Link</span>
                     <span className="mr-2 font-sans text-xl">VOTE</span>
                     <span className="font-sans text-xl"> Challenge</span>

@@ -27,7 +27,7 @@ const page: React.FC = () => {
     };
 
     return (
-        <div style={{ height: '85.5vh' }} className='bg-white'>
+        <div style={{ height: '88.5vh' }} className='bg-white'>
             <div className='flex flex-col justify-center'>
             <ReturnToList />
             <SubmitLinkForm onAddLink={handleAddLink} />
