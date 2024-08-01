@@ -4,7 +4,7 @@ import AddButton from "./components/AddButton";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col">
+    <main style={{ height: '88.5vh' }} className=" flex flex-col">
       <AddButton />
       <LinkList />
     </main>
